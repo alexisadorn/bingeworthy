@@ -5,7 +5,7 @@ RSpec.describe Show, type: :model do
     @show1 = create(:show)
     @user1 = create(:user)
     @station1 = create(:station)
-    @show1.genres.create([{name: "Drama"}, {name: "Adventure"}])
+    @show1.genres.create([attributes_for(:genre), attributes_for(:genre)])
     StationShow.create( station: @station1,
                         show: @show1,
                         user: @user1)

@@ -1,8 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
-  it "can be created" do
-    channel = Channel.create(name: "ABC")
-    expect(channel).to be_valid
+  before(:all) do
+    @channel = create(:channel)
+  end
+
+  it 'is valid with valid attributes' do
+    expect(@channel).to be_valid
+  end
+
+  it 'has many shows' do
+    should have_many(:shows)
   end
 end

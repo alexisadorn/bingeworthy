@@ -6,14 +6,14 @@ FactoryBot.define do
   end
 
   factory :station do
-    name "Must Watch"
-    description "Shows that are popular"
+    name { Faker::Hipster.sentence(3) }
+    description { Faker::Hipster.sentence }
     association :user, factory: :user
   end
 
   factory :show do
     title { Faker::Book.title }
-    description { Faker::Movie.quote }
+    description { Faker::Hipster.sentence }
     association :channel, factory: :channel
     status "Currently Watching"
     day "Monday"
@@ -23,5 +23,17 @@ FactoryBot.define do
 
   factory :channel do
     name "ABC"
+  end
+
+  factory :genre do
+    name { Faker::Book.genre }
+  end
+
+  factory :station_show do
+    association :station, factory: :station
+    association :show, factory: :show
+    association :user, factory: :user
+    user_status "Not Started"
+    user_season { Faker::Number.between(1, 20) }
   end
 end
