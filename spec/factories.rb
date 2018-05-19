@@ -16,9 +16,9 @@ FactoryBot.define do
     description { Faker::Hipster.sentence }
     association :channel, factory: :channel
     status "Currently Watching"
-    day "Monday"
+    day "Mon"
     time "9:00 PM"
-    current_season { Faker::Number.between(1, 20) }
+    current_season { Faker::Number.between(10, 20) }
   end
 
   factory :channel do
@@ -34,6 +34,6 @@ FactoryBot.define do
     association :show, factory: :show
     association :user, factory: :user
     user_status "Not Started"
-    user_season { Faker::Number.between(1, 20) }
+    user_season { Faker::Number.between(1, 10) }
   end
 end
