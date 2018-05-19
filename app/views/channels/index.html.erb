@@ -1,0 +1,7 @@
+<h1>Channels</h1>
+<p>Click on a Channel below to find more shows</p>
+<ul>
+  <% @channels.each do |channel| %>
+    <li><%= link_to channel.name, channel_path(channel) %></li>
+  <% end %>
+</ul>
