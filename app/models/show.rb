@@ -5,4 +5,6 @@ class Show < ApplicationRecord
   has_many :show_genres
   has_many :genres, through: :show_genres
   belongs_to :channel
+
+  validates :title, presence: true
 end
