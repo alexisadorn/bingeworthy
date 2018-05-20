@@ -4,6 +4,7 @@ class ShowsController < ApplicationController
   end
 
   def show
+    @show = Show.find_by(id: params[:id])
   end
 
   def new
