@@ -11,4 +11,9 @@ class StationShow < ApplicationRecord
       errors.add(:user_season, "can't be ahead of the show's current season")
     end
   end
+
+  def self.favorites
+    # List the shows where fav is true
+    Show.includes(:station_shows).where(:station_shows => { fav: true })
+  end
 end

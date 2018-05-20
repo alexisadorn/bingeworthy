@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # USERS
-alexis = User.create(email: 'alexisadorn@gmail.com', password: 'test123', admin: true)
+alexis = User.create(email: 'alexisadorn@gmail.com', password: 'test123')
 joe = User.create(email: 'joe@gmail.com', password: 'test123')
 
 # STATIONS
@@ -33,8 +33,7 @@ netflix = Channel.create(name: "Netflix Original")
 # SHOWS
 terror = Show.create( title: 'The Terror',
                       description: 'A fictionalized account of Captain Sir John Franklin\'s lost expedition to the Arctic',
-                      status: 'Currently On',
-                      day: 'Tuesday',
+                      day: 'Tue',
                       time: '8:00 PM',
                       current_season: 1 )
 terror.genres << horror
@@ -43,7 +42,6 @@ terror.save
 
 mr_robot = Show.create( title: 'Mr. Robot',
                       description: 'A hacker joins a group of hacktivists to destroy all deb records',
-                      status: 'On Hiatus',
                       current_season: 3 )
 mr_robot.genres << drama
 mr_robot.channel = usa
@@ -51,7 +49,6 @@ mr_robot.save
 
 got = Show.create( title: 'Game of Thrones',
                       description: 'A fantasty drama series adapted from George R.R. Martin\'s novels',
-                      status: 'On Hiatus',
                       current_season: 7 )
 got.genres << drama
 got.genres << fantasy
@@ -60,7 +57,6 @@ got.save
 
 lost_in_space = Show.create( title: 'Lost in Space',
                       description: 'Following the adventures of a family of pioneering space colonists whose ship veers off-course',
-                      status: 'On Hiatus',
                       current_season: 1 )
 lost_in_space.genres << sci_fi
 lost_in_space.genres << adventure
@@ -70,6 +66,6 @@ lost_in_space.save
 # STATION SHOW
 station_show1 = StationShow.create(station: currently_watching, show: terror, user: alexis, user_status: 'Currently Watching', user_season: 1)
 station_show2 = StationShow.create(station: to_start, show: mr_robot, user: alexis, user_status: "Not Started", user_season: 1)
-station_show3 = StationShow.create(station: waiting_for, show: got, user: alexis, user_status: "Caught Up", user_season: 7)
-station_show4 = StationShow.create(station: currently_watching, show: lost_in_space, user: alexis, user_status: "Currently Watching", user_season: 1)
-station_show2 = StationShow.create(station: family_friendly, show: lost_in_space, user: joe, user_status: "Not Started", user_season: 1)
+station_show3 = StationShow.create(station: waiting_for, show: got, user: alexis, user_status: "Caught Up", user_season: 7, fav: true)
+station_show4 = StationShow.create(station: currently_watching, show: lost_in_space, user: alexis, user_status: "Currently Watching", user_season: 1, fav: true)
+station_show5 = StationShow.create(station: family_friendly, show: lost_in_space, user: joe, user_status: "Not Started", user_season: 1)

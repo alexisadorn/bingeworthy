@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_024303) do
+ActiveRecord::Schema.define(version: 2018_05_20_210115) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
-    t.string "device"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,11 +35,9 @@ ActiveRecord::Schema.define(version: 2018_05_18_024303) do
     t.string "title"
     t.text "description"
     t.integer "channel_id"
-    t.string "status"
     t.string "day"
     t.string "time"
     t.integer "current_season"
-    t.boolean "fav", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_05_18_024303) do
     t.integer "user_season"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "fav", default: false
   end
 
   create_table "stations", force: :cascade do |t|
@@ -66,7 +64,6 @@ ActiveRecord::Schema.define(version: 2018_05_18_024303) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
