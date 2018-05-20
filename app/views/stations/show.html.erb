@@ -1,2 +1,8 @@
-<h1>Stations#show</h1>
-<p>Find me in app/views/stations/show.html.erb</p>
+<h1><%= @station.name %></h1>
+<ul>
+  <% @station.shows.each do |show| %>
+    <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
+  <% end %>
+</ul>
+<button>Edit Station Name</button>
+<button>Shut Down Station</button>
