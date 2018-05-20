@@ -1,2 +1,5 @@
-<h1>Channels#show</h1>
-<p>Find me in app/views/channels/show.html.erb</p>
+<h1><%= @channel.name %></h1>
+<p>Shows:</p>
+<% @channel.shows.each do |show| %>
+  <p><%= link_to show.title, show_path(show) %></p>
+<% end %>
