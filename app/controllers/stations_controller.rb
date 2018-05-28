@@ -1,6 +1,8 @@
 class StationsController < ApplicationController
+  helper_method :current_user
   def index
     @stations = Station.all
+    @user = current_user
   end
 
   def show
