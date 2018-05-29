@@ -3,6 +3,7 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
+    username { Faker::Name.name }
   end
 
   factory :station do
@@ -15,7 +16,6 @@ FactoryBot.define do
     title { Faker::Book.title }
     description { Faker::Hipster.sentence }
     association :channel, factory: :channel
-    status "Currently Watching"
     day "Mon"
     time "9:00 PM"
     current_season { Faker::Number.between(10, 20) }

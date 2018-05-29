@@ -45,7 +45,7 @@ RSpec.describe UsersController, type: :controller do
     it 'creates a new user when credentials are valid' do
       post :create, params: {user: {email: 'user@new.com', password: '12345', password_confirmation: '12345' }}
 
-      expect(response).to redirect_to stations_path
+      expect(response).to have_http_status(:success)
     end
   end
 end

@@ -22,6 +22,8 @@ RSpec.describe User, type: :model do
 
   it { should validate_presence_of(:email)}
 
+  it { should validate_presence_of(:username)}
+
   it "has a unique email" do
     user2 = build(:user, email: @user1.email)
     expect(user2).to_not be_valid

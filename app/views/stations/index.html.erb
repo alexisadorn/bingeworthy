@@ -1,5 +1,4 @@
-<h1>Welcome <%= current_user.email %></h1>
-<p>My Stations</p>
+<h1><%= current_user.username %>'s Stations</h1>
 <% alphebetized_stations.each do |station| %>
   <p><%= link_to station.name, station_path(station) %></p>
 <% end %>

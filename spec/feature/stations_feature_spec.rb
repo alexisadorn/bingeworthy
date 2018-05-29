@@ -1,15 +1,23 @@
 require 'rails_helper'
 
 RSpec.feature "Stations", type: :feature do
+  before(:each) do
+    @user = create(:user)
+    visit '/login'
+    fill_in("session[email]", :with => @user.email)
+    fill_in("session[password]", :with => @user.password)
+    click_button('Login')
+  end
+
   describe 'Stations#index' do
     it 'has a list of all stations' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       visit stations_path
       expect(page).to have_content("Now Watching")
     end
 
     it 'links a station to its show page' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       visit stations_path
       click_link("Now Watching")
       expect(page.current_path).to eq station_path(@station)
@@ -17,18 +25,18 @@ RSpec.feature "Stations", type: :feature do
 
     it 'has a button to create a new station' do
       visit stations_path
-      expect(page).to have_selector(:link_or_button, 'Start a new Station')
+      expect(page).to have_selector(:link_or_button, 'Create a new Station')
     end
 
     it 'has a button to view all shows' do
       visit stations_path
-      expect(page).to have_selector(:link_or_button, 'Find more shows to add to my stations')
+      expect(page).to have_selector(:link_or_button, 'Add Shows')
     end
   end
 
   describe 'Stations#show' do
     it 'has a list of all shows in that station' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
       station_show = create(:station_show, station: @station, show: @show)
       visit station_path(@station)
@@ -38,7 +46,7 @@ RSpec.feature "Stations", type: :feature do
     end
 
     it 'links a show to its show page' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
       station_show = create(:station_show, station: @station, show: @show)
       visit station_path(@station)
@@ -47,7 +55,7 @@ RSpec.feature "Stations", type: :feature do
     end
 
     it 'has a button to edit the station name' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
       station_show = create(:station_show, station: @station, show: @show)
       visit station_path(@station)
@@ -55,7 +63,7 @@ RSpec.feature "Stations", type: :feature do
     end
 
     it 'has a button to delete the station' do
-      @station = Station.create(name: "Now Watching", user: create(:user))
+      @station = Station.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
       station_show = create(:station_show, station: @station, show: @show)
       visit station_path(@station)
