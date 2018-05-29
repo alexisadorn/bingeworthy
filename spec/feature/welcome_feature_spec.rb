@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "Welcome#index", type: :feature do
-  it 'has a button to log in' do
+  it 'links to the log in page' do
     visit '/'
-    expect(page).to have_selector(:link_or_button, 'Log In')
+    click_link("Log In")
+    expect(page.current_path).to eq login_path
   end
 
-  it 'has a button to sign up' do
+  it 'links to the sign up page' do
     visit '/'
-    expect(page).to have_selector(:link_or_button, 'Sign Up')
+    click_link("Sign Up")
+    expect(page.current_path).to eq new_user_path
   end
 end
