@@ -12,8 +12,8 @@ class StationShow < ApplicationRecord
     end
   end
 
-  def self.favorites
-    # List the shows where fav is true
-    Show.includes(:station_shows).where(:station_shows => { fav: true })
+  def self.my_favorites(uid)
+    # List the user's shows where fav is true
+    Show.includes(:station_shows).where(:station_shows => { fav: true, user_id: uid })
   end
 end

@@ -1,8 +1,9 @@
 class StationsController < ApplicationController
   helper_method :current_user
   def index
-    @stations = Station.all
     @user = current_user
+    @stations = Station.user_stations(@user.id)
+    @favorites = StationShow.my_favorites(@user.id)
   end
 
   def show
