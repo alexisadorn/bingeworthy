@@ -1,6 +1,16 @@
 <h1>Create a New Station</h1>
+<% if @station.errors.any? %>
+  <ul>
+  <% @station.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
 <%= form_for(@station) do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :description %>
+  <%= f.text_area :description %><br>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.submit %>
 <% end %>
