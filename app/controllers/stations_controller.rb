@@ -24,12 +24,28 @@ class StationsController < ApplicationController
   end
 
   def edit
+    @station = Station.find_by(id: params[:id])
   end
 
   def update
+    @station = Station.find_by(id: params[:id])
+    @station.update(station_params)
+    if @station.save
+      redirect_to station_path(@station)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @station = Station.find_by(id: params[:id])
+    if @station
+      @station.destroy
+      redirect_to stations_path
+      flash[:message] = "Your station has been shut down"
+    else
+      render :show
+    end 
   end
 
   private
