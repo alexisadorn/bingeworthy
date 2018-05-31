@@ -1,6 +1,10 @@
 <h1>Browse All Shows</h1>
 <ul>
-<% @shows.each do |show| %>
+<% alphebetized_shows.each do |show| %>
   <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
 <% end %>
 </ul>
+<%= link_to "Add New Show", new_show_path %><br>
+<%= link_to "Browse by Genre", genres_path %><br>
+<%= link_to "Browse by Channel", channels_path %><br>
+<p>Sort By: Title | Current Season | Day </p>
