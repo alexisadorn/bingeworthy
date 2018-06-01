@@ -15,7 +15,7 @@ class Show < ApplicationRecord
   end
 
   def channel_name
-    self.channel ? self.channel.name : nil
+    nil
   end
 
   def genres_attributes=(genre_attributes)

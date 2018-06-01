@@ -1,17 +1,21 @@
 <h1><%= @show.title %></h1>
 <p><%= @show.description %></p>
 <p><strong>Genres:</strong>
+  <ul>
   <% @show.genres.each do |genre| %>
-  <%= link_to genre.name, genre_path(genre) %>,
+    <li><%= link_to genre.name, genre_path(genre) %></li>
   <% end %>
+  </ul>
 </p>
 <p><strong>Channel: </strong><%= link_to @show.channel.name, channel_path(@show.channel) %></p>
 <p><strong>Day: </strong><%= @show.day %></p>
 <p><strong>Time: </strong><%= @show.time %></p>
 <p><strong>Current Season: </strong><%= @show.current_season %></p>
 <hr>
+<%= link_to "Back to Shows", shows_path %>
+<p>Station</p>
 <button>Add To My Station</button>
-or
 <button>Move to Different Station</button>
 <button>Already in Station - Remove?</button>
-<button>Update show details</button> (Only for those who created it)
+<p>Edit</p>
+<%= link_to "Update show details", edit_show_path(@show) %></button>

@@ -22,9 +22,18 @@ class ShowsController < ApplicationController
   end
 
   def edit
+    @show = Show.find_by(id: params[:id])
   end
 
   def update
+    @show = Show.find_by(id: params[:id])
+    params[:show][:channel_name] = "" if params[:show][:channel_id].present?
+    @show.update(show_params)
+    if @show.save
+      redirect_to show_path(@show)
+    else
+      render :edit
+    end
   end
 
   private
