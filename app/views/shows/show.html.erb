@@ -14,7 +14,12 @@
 <hr>
 <%= link_to "Back to Shows", shows_path %>
 <p>Station</p>
-<button>Add To My Station</button>
+<strong>Add To My Station</strong>
+<%= form_for StationShow.new, method: 'POST', action: '/station_show' do |f| %>
+<%= f.collection_check_boxes :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name %>
+<%= f.hidden_input :show_id, value: @show.id %>
+<%= f.submit %>
+<% end %>
 <button>Move to Different Station</button>
 <button>Already in Station - Remove?</button>
 <p>Edit</p>

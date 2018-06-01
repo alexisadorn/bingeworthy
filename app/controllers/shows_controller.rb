@@ -1,10 +1,12 @@
 class ShowsController < ApplicationController
+  helper_method :current_user
   def index
     @shows = Show.all
   end
 
   def show
     @show = Show.find_by(id: params[:id])
+    @user_shows = current_user.shows.where(id: @show.id)
   end
 
   def new
