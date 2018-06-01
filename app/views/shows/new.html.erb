@@ -1,4 +1,11 @@
 <h1>Create a New Show</h1>
+<% if @show.errors.any? %>
+  <ul>
+  <% @show.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
 <%= form_for(@show) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
@@ -7,7 +14,7 @@
   <%= f.label :channel %>
   <%= f.collection_select :channel_id, Channel.all, :id, :name, :include_blank => true %> or <br>
   Create a new channel:
-  <%= f.text_field :channel %>
+  <%= f.text_field :channel_name %>
   <br>
   <%= f.label :day %>
   <%= f.select(:day, options_for_select(['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']), { include_blank: true }) %>
@@ -17,7 +24,7 @@
   <%= f.label :current_season %>
   <%= f.number_field :current_season %><br>
   <%= f.label :genre %><br>
-  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %> or <br>
+  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %> <br>
   Create a new genre:
   <%= f.fields_for :genres, @show.genres.build do |genre_fields| %>
     <%= genre_fields.text_field :name %>
