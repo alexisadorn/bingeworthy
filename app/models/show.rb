@@ -8,7 +8,7 @@ class Show < ApplicationRecord
   accepts_nested_attributes_for :genres
 
   validates :title, presence: true, uniqueness: { scope: :channel_id } # Validates uniqueness of title and channel
-  validates :current_season, presence: true, numericality: true
+  validates :current_season, presence: true, numericality: { greater_than: 0 }
 
   def channel_name=(name)
     self.channel = Channel.find_or_create_by(name: name) unless name.blank?

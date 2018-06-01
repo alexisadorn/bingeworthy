@@ -12,7 +12,7 @@
   <%= f.label "Show Description" %>
   <%= f.text_area :description %><br>
   <%= f.label :channel %>
-  <%= f.collection_select :channel_id, Channel.all, :id, :name, :include_blank => true %> or <br>
+  <%= f.collection_select :channel_id, Channel.order('name ASC'), :id, :name, :include_blank => true %> or <br>
   Create a new channel:
   <%= f.text_field :channel_name %>
   <br>
@@ -24,7 +24,7 @@
   <%= f.label :current_season %>
   <%= f.number_field :current_season %><br>
   <%= f.label :genre %><br>
-  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %> <br>
+  <%= f.collection_check_boxes :genre_ids, Genre.order('name ASC'), :id, :name %> <br>
   Create a new genre:
   <%= f.fields_for :genres, @show.genres.build do |genre_fields| %>
     <%= genre_fields.text_field :name %>
