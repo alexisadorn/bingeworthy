@@ -19,4 +19,9 @@ class ShowsController < ApplicationController
 
   def update
   end
+
+  private
+  def show_params
+    params.require(:show).permit(:title, :description, :channel_id, :day, :time, :current_season, genre_ids:[], genres_attributes:[:name])
+  end
 end
