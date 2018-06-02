@@ -31,8 +31,18 @@
   <%= f.fields_for :genres, @show.genres.build do |genre_fields| %>
     <%= genre_fields.text_field :name %>
   <% end %>
+  <hr>
+  Add this Show to Your Station:
+  <%= f.fields_for :station_shows, @station_shows do |station_form| %>
+    <%= station_form.collection_select :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
+    <%= station_form.label "Your Viewing Status" %>
+    <%= station_form.text_field :user_status %><br>
+    <%= station_form.label "What Season Are You On" %>
+    <%= station_form.number_field :user_season %><br>
+    <%= station_form.check_box :fav %> Fav? <br>
+    <%= station_form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
 <br>
 <br>
 <%= f.submit %>
 <% end %>
-<!-- TODO: Adding show to a station from Show#new - how can this be done? Lookup nested forms in Rails guides -->

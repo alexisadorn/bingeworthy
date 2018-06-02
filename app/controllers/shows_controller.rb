@@ -11,6 +11,7 @@ class ShowsController < ApplicationController
 
   def new
     @show = Show.new
+    @station_shows = @show.station_shows.build
   end
 
   def create
@@ -38,6 +39,15 @@ class ShowsController < ApplicationController
 
   private
   def show_params
-    params.require(:show).permit(:title, :description, :channel_id, :day, :time, :current_season, genre_ids:[], genres_attributes:[:name], channel_attributes:[:name])
+    params.require(:show).permit( :title,
+                                  :description,
+                                  :channel_id,
+                                  :day,
+                                  :time,
+                                  :current_season,
+                                  genre_ids:[],
+                                  genres_attributes:[:name],
+                                  channel_attributes:[:name],
+                                  station_shows_attributes:[:station_id, :user_status, :user_season, :fav, :user_id])
   end
 end

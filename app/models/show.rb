@@ -6,6 +6,7 @@ class Show < ApplicationRecord
   has_many :genres, through: :show_genres
   belongs_to :channel
   accepts_nested_attributes_for :genres
+  accepts_nested_attributes_for :station_shows
 
   validates :title, presence: true, uniqueness: { scope: :channel_id } # Validates uniqueness of title and channel
   validates :current_season, presence: true, numericality: { greater_than: 0 }
