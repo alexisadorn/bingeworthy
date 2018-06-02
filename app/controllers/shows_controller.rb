@@ -8,12 +8,11 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @user_shows = current_user.shows.where(id: @show.id)
   end
 
   def new
     @show = Show.new
-    @station_shows = @show.station_shows.build
+    @station_shows = @show.station_shows.build(station_id: params[:station_id])
   end
 
   def create
@@ -26,6 +25,9 @@ class ShowsController < ApplicationController
   end
 
   def edit
+    if params[:station_id]
+      @station_shows = StationShow.find_by(station_id: params[:station_id], show_id: @show.id, user_id: current_user.id)
+    end
   end
 
   def update
