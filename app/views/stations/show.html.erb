@@ -1,8 +1,10 @@
 <h1><%= @station.name %></h1>
 <p><em><%= @station.description %></em></p>
 <ul>
-  <% @station.shows.each do |show| %>
-    <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
+  <% @station.station_shows.each do |station_show| %>
+    <li><%= link_to station_show.show.title, show_path(station_show.show) %><br>
+        Status: <%= station_show.user_status %><br>
+        Season You're On: <%= station_show.user_season %></li>
   <% end %>
 </ul>
 <button>Add Shows</button><!-- Nested Resource use here?? Add a show but from stations/:station_id/show -->
