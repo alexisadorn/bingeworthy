@@ -18,6 +18,15 @@ class Show < ApplicationRecord
     nil
   end
 
+  def channel_attributes=(channel_attributes)
+    channel_attributes.values.each do |channel_attribute|
+      unless channel_attribute.blank?
+        channel = Channel.find_or_create_by(name: channel_attribute)
+        self.channel = channel
+      end
+    end
+  end
+
   def genres_attributes=(genre_attributes)
     genre_name = genre_attributes["0"]["name"]
     unless genre_name.blank?

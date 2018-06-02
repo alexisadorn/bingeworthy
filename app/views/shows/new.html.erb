@@ -14,7 +14,9 @@
   <%= f.label :channel %>
   <%= f.collection_select :channel_id, Channel.order('name ASC'), :id, :name, :include_blank => true %> or <br>
   Create a new channel:
-  <%= f.text_field :channel_name %>
+  <%= f.fields_for :channel_attributes do |channel_fields| %>
+    <%= channel_fields.text_field :name %>
+  <% end %>
   <br>
   <%= f.label :day %>
   <%= f.select(:day, options_for_select(['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']), { include_blank: true }) %>
