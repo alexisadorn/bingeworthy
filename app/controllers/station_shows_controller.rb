@@ -21,7 +21,15 @@ class StationShowsController < ApplicationController
   def update
   end
 
-  def destory
+  def destroy
+    @show = Show.find(params[:station_show][:show_id])
+    station_show = StationShow.find_by(
+      user_id: params[:station_show][:user_id],
+      show_id: params[:station_show][:show_id],
+      station_id: params[:station_show][:station_id]
+    )
+    station_show.destroy
+    redirect_to show_path(@show)
   end
 
   private

@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :shows
   resources :genres
   resources :channels
-  resources :station_shows
+  delete '/station_shows', to: 'station_shows#destroy'
+  resources :station_shows, only: [:new, :create, :edit, :udpate]
   get '/signup', to: 'users#new', as: 'new_user'
   post '/signup', to: 'users#create'
   get '/users', to: 'users#index'
