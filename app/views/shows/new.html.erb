@@ -42,6 +42,7 @@
     <%= station_form.check_box :fav %> Fav? <br>
     <%= station_form.hidden_field :user_id, value: current_user.id %>
   <% end %>
+  <%= f.hidden_field :created_by, value: current_user.id %>
 <br>
 <br>
 <%= f.submit %>

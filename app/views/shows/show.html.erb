@@ -60,5 +60,7 @@
 <%= f.submit "Delete Show From Station" %>
 <% end %>
 <% end %>
-<p>Edit</p>
-<%= link_to "Update show details", edit_show_path(@show) %>
+<% if @show.created_by == current_user.id %>
+  <p>Edit</p>
+  <%= link_to "Update show details", edit_show_path(@show) %>
+<% end %>
