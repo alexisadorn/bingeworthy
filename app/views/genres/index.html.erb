@@ -1,7 +1,7 @@
 <h1>Show Genres</h1>
 <p>Click on a genre below to see all shows in that Genre</p>
 <ul>
-<% @genres.each do |genre| %>
+<% alphebetize(@genres).each do |genre| %>
   <li><%= link_to genre.name, genre_path(genre) %></li>
 <% end %>
 </ul>
