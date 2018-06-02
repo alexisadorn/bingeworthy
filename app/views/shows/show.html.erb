@@ -16,8 +16,14 @@
 <p>Station</p>
 <strong>Add To My Station</strong>
 <%= form_for StationShow.new, method: 'POST', action: '/station_show' do |f| %>
-<%= f.collection_check_boxes :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name %>
-<%= f.hidden_input :show_id, value: @show.id %>
+<%= f.collection_select :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
+<%= f.label "Your Viewing Status" %>
+<%= f.text_field :user_status %><br>
+<%= f.label "What Season Are You On" %>
+<%= f.number_field :user_season %><br>
+<%= f.check_box :fav %> Fav? <br>
+<%= f.hidden_field :show_id, value: @show.id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
 <%= f.submit %>
 <% end %>
 <button>Move to Different Station</button>
