@@ -1,9 +1,10 @@
 class StationsController < ApplicationController
-  helper_method :current_user
+  before_action :require_login
+  before_action :set_user_station, only: [:show, :edit, :update, :destroy]
+
   def index
-    @user = current_user
-    @stations = Station.user_stations(@user.id)
-    @favorites = StationShow.my_favorites(@user.id)
+    @stations = current_user.stations
+    @favorites = current_user.favorite_shows
   end
 
   def new
@@ -20,15 +21,12 @@ class StationsController < ApplicationController
   end
 
   def show
-    @station = Station.find_by(id: params[:id])
   end
 
   def edit
-    @station = Station.find_by(id: params[:id])
   end
 
   def update
-    @station = Station.find_by(id: params[:id])
     @station.update(station_params)
     if @station.save
       redirect_to station_path(@station)
@@ -38,18 +36,25 @@ class StationsController < ApplicationController
   end
 
   def destroy
-    @station = Station.find_by(id: params[:id])
     if @station
       @station.destroy
       redirect_to stations_path
       flash[:message] = "Your station has been shut down"
     else
       render :show
-    end 
+    end
   end
 
   private
   def station_params
     params.require(:station).permit(:name, :description, :user_id)
+  end
+
+  def set_user_station
+    @station = Station.find_by(id: params[:id])
+    unless @station.user == current_user
+      flash[:error] = "This is not your station!"
+      redirect_to stations_path
+    end
   end
 end
