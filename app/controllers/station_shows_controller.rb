@@ -1,6 +1,7 @@
 class StationShowsController < ApplicationController
   helper_method :current_user
   def show
+    @station_show = StationShow.find_by(id: params[:id])
   end
 
   def new
@@ -16,9 +17,17 @@ class StationShowsController < ApplicationController
   end
 
   def edit
+    @my_show = StationShow.find_by(id: params[:id])
   end
 
   def update
+    @station_show = StationShow.find_by(params[:id])
+    @station_show.update(station_show_params)
+    if @station_show.save
+      redirect_to station_path(@station_show.station_id)
+    else
+      render :edit
+    end
   end
 
   def destroy

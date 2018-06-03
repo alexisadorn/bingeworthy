@@ -12,6 +12,7 @@ class ShowsController < ApplicationController
   end
 
   def show
+    @station_shows = @show.station_shows.where(user_id: current_user.id)
   end
 
   def new

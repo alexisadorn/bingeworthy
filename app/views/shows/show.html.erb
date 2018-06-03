@@ -12,55 +12,20 @@
 <p><strong>Time: </strong><%= @show.time %></p>
 <p><strong>Current Season: </strong><%= @show.current_season %></p>
 <hr>
-<%= link_to "Back to Shows", shows_path %>
-<p>Stations</p>
-<% station_count = @show.station_shows.where(user_id: current_user.id).count %>
-<% if station_count == 0 %>
-<p><%= @show.title %> is not currently in any of your stations!</p>
-  <strong>Add To My Station</strong>
-  <%= form_for StationShow.new, method: 'POST', action: '/station_show' do |f| %>
-  <%= f.collection_select :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
-  <%= f.label "Your Viewing Status" %>
-  <%= f.text_field :user_status %><br>
-  <%= f.label "What Season Are You On" %>
-  <%= f.number_field :user_season %><br>
-  <%= f.check_box :fav %> Fav? <br>
-  <%= f.hidden_field :show_id, value: @show.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
+<% if @station_shows.count > 0 %>
+  <% @station_shows.each do |station_show| %>
+    Station: <%= station_show.station.name %><br>
+    User Status: <%= station_show.user_status %><br>
+    User Season: <%= station_show.user_season %><br>
+    <%= link_to "Edit My Show's Status", edit_my_show_path(station_show) %><br>
+    Remove This Show from My Station<br>
+    <br>
   <% end %>
 <% else %>
-<p><%= @show.title %> is in <%= station_count %> of your stations:</p>
-<ul>
-  <% @show.station_shows.where(user_id: current_user.id).each do |user_stations| %>
-    <li><%= link_to user_stations.station.name, station_path(user_stations.station) %><br>
-        Status: <%= user_stations.user_status %><br>
-        Season You're On: <%= user_stations.user_season %>
-        </li>
-  <% end %>
-</ul>
-
-<strong>Add To Another Station</strong>
-<%= form_for StationShow.new, method: 'POST', action: '/station_show' do |f| %>
-<%= f.collection_select :station_id, Station.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
-<%= f.label "Your Viewing Status" %>
-<%= f.text_field :user_status %><br>
-<%= f.label "What Season Are You On" %>
-<%= f.number_field :user_season %><br>
-<%= f.check_box :fav %> Fav? <br>
-<%= f.hidden_field :show_id, value: @show.id %>
-<%= f.hidden_field :user_id, value: current_user.id %>
-<%= f.submit %>
+  Add to A Station
 <% end %>
-<strong>Remove this Show from my Station</strong>
-<%= form_for StationShow.new, method: "delete", action: '/station_shows' do |f| %>
-<%= f.collection_select :station_id, Station.order('name ASC').joins(:shows).where(:stations => {user_id: current_user.id}).where(:shows => {id: @show.id}), :id, :name, :include_blank => true %><br>
-<%= f.hidden_field :show_id, value: @show.id %>
-<%= f.hidden_field :user_id, value: current_user.id %>
-<%= f.submit "Delete Show From Station" %>
-<% end %>
-<% end %>
+<hr>
+<%= link_to "Back to Shows", shows_path %> <br>
 <% if @show.created_by == current_user.id %>
-  <p>Edit</p>
   <%= link_to "Update show details", edit_show_path(@show) %>
 <% end %>

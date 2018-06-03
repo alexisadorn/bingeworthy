@@ -2,15 +2,12 @@
 <p><em><%= @station.description %></em></p>
 <ul>
   <% @station.shows.each do |show| %>
-    <li><%= link_to show.title, station_show_path(@station, show) %> -
-    <%= link_to "Edit my User Details about this show", edit_station_show_path(@station, show) %></li>
+    <li><%= link_to show.title, station_show_path(@station, show) %></li>
   <% end %>
 </ul>
-<%= link_to "Add a New Show to this Station", new_station_show_path(@station) %><br>
-<%= link_to "Edit My Station", edit_station_path(@station) %>
+<%= link_to "Add Show to Station", shows_path %><br>
+<%= link_to "Edit My Station", edit_station_path(@station) %><br>
+<%= link_to "Back to My Stations", stations_path %>
 <%= form_tag(station_path, method: "delete") do %>
 <%= submit_tag "Shut Down Station" %>
 <% end %>
-<%= link_to "Back to My Stations", stations_path %>
-
-<!-- /stations/1/shows/5 shows the show details -->
