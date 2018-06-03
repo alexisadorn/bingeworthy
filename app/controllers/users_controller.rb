@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  helper_method :logged_in?
+  helper_method :logged_in?, :current_user
 
   def new
     if logged_in?
@@ -17,6 +17,20 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    if logged_in?
+      @user = current_user
+      user_from_params = User.find_by(id: params[:id])
+      unless @user == user_from_params
+        redirect_to stations_path
+        flash[:danger] = "You don't have access to view that user's settings!"
+      end
+    else
+      redirect_to login_path
+    end
+
   end
 
   private

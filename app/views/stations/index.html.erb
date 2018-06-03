@@ -11,3 +11,8 @@
 <% end %>
 <button><%= link_to "Create a new Station", new_station_path %></button>
 <button><%= link_to "Add Shows", shows_path %></button>
+<br>
+<br>
+<%= link_to "See All of My Shows", user_shows_path(current_user) %></p>
+<%= link_to "View My Account Settings", user_path(current_user) %></p>
+<%= link_to "Logout", logout_path %></p>

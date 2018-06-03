@@ -4,7 +4,11 @@ class ShowsController < ApplicationController
   before_action :created_by_current_user, only: [:edit, :update]
 
   def index
-    @shows = Show.all
+    if params[:user_id].present?
+      @shows = Show.joins(:station_shows).where(:station_shows => {user_id: params[:user_id]})
+    else
+      @shows = Show.all
+    end
   end
 
   def show
