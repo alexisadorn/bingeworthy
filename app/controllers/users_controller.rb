@@ -20,10 +20,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
     if logged_in?
-      @user = current_user
-      user_from_params = User.find_by(id: params[:id])
-      unless @user == user_from_params
+      unless @user == User.find_by(id: params[:id])
         redirect_to stations_path
         flash[:danger] = "You don't have access to view that user's settings!"
       end

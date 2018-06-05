@@ -14,11 +14,14 @@
 <hr>
 <% if @station_shows.count > 0 %>
   <% @station_shows.each do |station_show| %>
-    Station: <%= station_show.station.name %><br>
+    Station: <%= link_to station_show.station.name, station_path(station_show.station) %><br>
     User Status: <%= station_show.user_status %><br>
     User Season: <%= station_show.user_season %><br>
-    <%= link_to "Edit My Show's Status", edit_my_show_path(station_show) %><br>
-    Remove This Show from My Station<br>
+    <%= link_to "Edit Station Details", edit_station_show_path(station_show) %><br>
+    <%= form_tag(station_show_path, method: "delete") do %>
+    <%= hidden_field_tag :station_show_id, station_show.id %>
+    <%= submit_tag "Remove This Show from This Station" %>
+    <% end %>
     <br>
   <% end %>
 <% else %>

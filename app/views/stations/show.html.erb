@@ -2,7 +2,7 @@
 <p><em><%= @station.description %></em></p>
 <ul>
   <% @station.shows.each do |show| %>
-    <li><%= link_to show.title, station_show_path(@station, show) %></li>
+    <li><%= link_to show.title, show_path(show) %></li>
   <% end %>
 </ul>
 <%= link_to "Add Show to Station", shows_path %><br>
