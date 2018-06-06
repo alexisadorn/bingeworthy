@@ -5,7 +5,7 @@ class ShowsController < ApplicationController
 
   def index
     if params[:user_id].present?
-      @shows = Show.joins(:station_shows).where(:station_shows => {user_id: params[:user_id]})
+      @shows = Show.joins(:station_shows).where(:station_shows => {user_id: params[:user_id]}).uniq
     else
       @shows = Show.all
     end

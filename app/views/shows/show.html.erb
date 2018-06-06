@@ -17,15 +17,16 @@
     Station: <%= link_to station_show.station.name, station_path(station_show.station) %><br>
     User Status: <%= station_show.user_status %><br>
     User Season: <%= station_show.user_season %><br>
-    <%= link_to "Edit Station Details", edit_station_show_path(station_show) %><br>
+    <%= link_to "Edit Station Details", edit_show_station_show_path(@show, station_show) %><br>
     <%= form_tag(station_show_path, method: "delete") do %>
     <%= hidden_field_tag :station_show_id, station_show.id %>
     <%= submit_tag "Remove This Show from This Station" %>
     <% end %>
     <br>
   <% end %>
+  <%= link_to "Add to Another New Station", new_show_station_show_path(@show) %>
 <% else %>
-  Add to A Station
+  <%= link_to "Add to A Station", new_show_station_show_path(@show) %>
 <% end %>
 <hr>
 <%= link_to "Back to Shows", shows_path %> <br>

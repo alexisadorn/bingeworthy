@@ -4,8 +4,10 @@ Rails.application.routes.draw do
     resources :shows, only: [:index]
   end
   resources :stations
-  resources :station_shows, only: [:edit, :update, :destroy]
-  resources :shows
+  resources :station_shows, except: [:index]
+  resources :shows do
+    resources :station_shows, only: [:new, :create, :edit, :update]
+  end
   resources :genres, only: [:index, :show]
   resources :channels, only: [:index, :show]
   get '/login', to: 'sessions#new'
