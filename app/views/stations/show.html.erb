@@ -1,13 +1,13 @@
-<h1><%= @station.name %></h1>
-<p><em><%= @station.description %></em></p>
+<h1><%= @watchlist.name %></h1>
+<p><em><%= @watchlist.description %></em></p>
 <ul>
-  <% @station.shows.each do |show| %>
+  <% @watchlist.shows.each do |show| %>
     <li><%= link_to show.title, show_path(show) %></li>
   <% end %>
 </ul>
-<%= link_to "Add Show to Station", shows_path %><br>
-<%= link_to "Edit My Station", edit_station_path(@station) %><br>
-<%= link_to "Back to My Stations", stations_path %>
-<%= form_tag(station_path, method: "delete") do %>
-<%= submit_tag "Shut Down Station" %>
+<%= link_to "Add Show to Watchlist", shows_path %><br>
+<%= link_to "Edit My Watchlist", edit_watchlist_path(@watchlist) %><br>
+<%= link_to "Back to My Watchlists", watchlists_path %>
+<%= form_tag(watchlist_path, method: "delete") do %>
+<%= submit_tag "Delete Watchlist" %>
 <% end %>

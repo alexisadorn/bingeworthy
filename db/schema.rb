@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_02_212930) do
+ActiveRecord::Schema.define(version: 2018_06_07_230748) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2018_06_02_212930) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "watchlist_id"
+    t.integer "show_id"
+    t.integer "user_id"
+    t.string "user_status"
+    t.integer "user_season"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "fav", default: false
   end
 
   create_table "show_genres", force: :cascade do |t|
@@ -43,31 +54,20 @@ ActiveRecord::Schema.define(version: 2018_06_02_212930) do
     t.integer "created_by"
   end
 
-  create_table "station_shows", force: :cascade do |t|
-    t.integer "station_id"
-    t.integer "show_id"
-    t.integer "user_id"
-    t.string "user_status"
-    t.integer "user_season"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "fav", default: false
-  end
-
-  create_table "stations", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+  end
+
+  create_table "watchlists", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -34,7 +34,7 @@ RSpec.feature "Shows", type: :feature do
       expect(page).to have_content("Genres: Drama,")
     end
 
-    it 'has a button to add the show to my station' do
+    it 'has a button to add the show to my watchlist' do
       @show = Show.create(title: "Scandal",
                           description: "A powerful team of Washington, D.C. lawyers makes scandals disappear while handling goverment crises.",
                           channel: Channel.create(name: "ABC"),
@@ -43,10 +43,10 @@ RSpec.feature "Shows", type: :feature do
                           current_season: 7)
       @show.genres << Genre.create(name: "Drama")
       visit show_path(@show)
-      expect(page).to have_selector(:link_or_button, 'Add To My Station')
+      expect(page).to have_selector(:link_or_button, 'Add To My Watchlist')
     end
 
-    it 'has a button to move the show from my station' do
+    it 'has a button to move the show from my watchlist' do
       @show = Show.create(title: "Scandal",
                           description: "A powerful team of Washington, D.C. lawyers makes scandals disappear while handling goverment crises.",
                           channel: Channel.create(name: "ABC"),
@@ -55,10 +55,10 @@ RSpec.feature "Shows", type: :feature do
                           current_season: 7)
       @show.genres << Genre.create(name: "Drama")
       visit show_path(@show)
-      expect(page).to have_selector(:link_or_button, 'Move to Different Station')
+      expect(page).to have_selector(:link_or_button, 'Move to Different Watchlist')
     end
 
-    it 'has a button to move the show from my station' do
+    it 'has a button to move the show from my watchlist' do
       @show = Show.create(title: "Scandal",
                           description: "A powerful team of Washington, D.C. lawyers makes scandals disappear while handling goverment crises.",
                           channel: Channel.create(name: "ABC"),
@@ -67,7 +67,7 @@ RSpec.feature "Shows", type: :feature do
                           current_season: 7)
       @show.genres << Genre.create(name: "Drama")
       visit show_path(@show)
-      expect(page).to have_selector(:link_or_button, 'Already in Station - Remove?')
+      expect(page).to have_selector(:link_or_button, 'Already in Watchlist - Remove?')
     end
 
     it 'has a button to update show details' do

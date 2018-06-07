@@ -8,6 +8,6 @@ RSpec.describe "Feature Test: Signup", type: :feature do
     fill_in("user[password]", :with => "12345")
     fill_in("user[password_confirmation]", :with => "12345")
     click_button('Create my account')
-    expect(current_path).to eq('/stations')
+    expect(current_path).to eq('/watchlists')
   end
 end

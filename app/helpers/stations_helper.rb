@@ -1,2 +1,2 @@
-module StationsHelper
+module WatchlistsHelper
 end

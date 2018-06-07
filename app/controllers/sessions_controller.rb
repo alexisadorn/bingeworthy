@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   helper_method :logged_in?
   def new
     if logged_in?
-      redirect_to stations_path
+      redirect_to watchlists_path
     end
   end
 
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to stations_path
+      redirect_to watchlists_path
     else
       flash.now[:danger] = "Wrong email and/or password"
       render :new

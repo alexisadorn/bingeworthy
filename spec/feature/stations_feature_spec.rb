@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Stations", type: :feature do
+RSpec.feature "Watchlists", type: :feature do
   before(:each) do
     @user = create(:user)
     visit '/login'
@@ -9,65 +9,65 @@ RSpec.feature "Stations", type: :feature do
     click_button('Login')
   end
 
-  describe 'Stations#index' do
-    it 'has a list of all stations' do
-      @station = Station.create(name: "Now Watching", user: @user)
-      visit stations_path
+  describe 'Watchlists#index' do
+    it 'has a list of all watchlists' do
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
+      visit watchlists_path
       expect(page).to have_content("Now Watching")
     end
 
-    it 'links a station to its show page' do
-      @station = Station.create(name: "Now Watching", user: @user)
-      visit stations_path
+    it 'links a watchlist to its show page' do
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
+      visit watchlists_path
       click_link("Now Watching")
-      expect(page.current_path).to eq station_path(@station)
+      expect(page.current_path).to eq watchlist_path(@watchlist)
     end
 
-    it 'has a button to create a new station' do
-      visit stations_path
-      expect(page).to have_selector(:link_or_button, 'Create a new Station')
+    it 'has a button to create a new watchlist' do
+      visit watchlists_path
+      expect(page).to have_selector(:link_or_button, 'Create a new Watchlist')
     end
 
     it 'has a button to view all shows' do
-      visit stations_path
+      visit watchlists_path
       expect(page).to have_selector(:link_or_button, 'Add Shows')
     end
   end
 
-  describe 'Stations#show' do
-    it 'has a list of all shows in that station' do
-      @station = Station.create(name: "Now Watching", user: @user)
+  describe 'Watchlists#show' do
+    it 'has a list of all shows in that watchlist' do
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
-      station_show = create(:station_show, station: @station, show: @show)
-      visit station_path(@station)
+      listing = create(:listing, watchlist: @watchlist, show: @show)
+      visit watchlist_path(@watchlist)
       expect(page).to have_content("Now Watching")
       expect(page).to have_content("Scandal")
       expect(page).to have_content("ABC")
     end
 
     it 'links a show to its show page' do
-      @station = Station.create(name: "Now Watching", user: @user)
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
-      station_show = create(:station_show, station: @station, show: @show)
-      visit station_path(@station)
+      listing = create(:listing, watchlist: @watchlist, show: @show)
+      visit watchlist_path(@watchlist)
       click_link("Scandal")
       expect(page.current_path).to eq show_path(@show)
     end
 
-    it 'has a button to edit the station name' do
-      @station = Station.create(name: "Now Watching", user: @user)
+    it 'has a button to edit the watchlist name' do
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
-      station_show = create(:station_show, station: @station, show: @show)
-      visit station_path(@station)
-      expect(page).to have_selector(:link_or_button, 'Edit Station Name')
+      listing = create(:listing, watchlist: @watchlist, show: @show)
+      visit watchlist_path(@watchlist)
+      expect(page).to have_selector(:link_or_button, 'Edit Watchlist Name')
     end
 
-    it 'has a button to delete the station' do
-      @station = Station.create(name: "Now Watching", user: @user)
+    it 'has a button to delete the watchlist' do
+      @watchlist = Watchlist.create(name: "Now Watching", user: @user)
       @show = create(:show, title: "Scandal")
-      station_show = create(:station_show, station: @station, show: @show)
-      visit station_path(@station)
-      expect(page).to have_selector(:link_or_button, 'Shut Down Station')
+      listing = create(:listing, watchlist: @watchlist, show: @show)
+      visit watchlist_path(@watchlist)
+      expect(page).to have_selector(:link_or_button, 'Delete Watchlist')
     end
   end
 end

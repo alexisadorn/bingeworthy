@@ -7,6 +7,6 @@ RSpec.describe "Feature Test: Login", type: :feature do
     fill_in("session[email]", :with => "user@gmail.com")
     fill_in("session[password]", :with => "12345")
     click_button('Login')
-    expect(current_path).to eq('/stations')
+    expect(current_path).to eq('/watchlists')
   end
 end

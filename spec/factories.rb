@@ -6,7 +6,7 @@ FactoryBot.define do
     username { Faker::Name.name }
   end
 
-  factory :station do
+  factory :watchlist do
     name { Faker::Hipster.sentence(3) }
     description { Faker::Hipster.sentence }
     association :user, factory: :user
@@ -29,8 +29,8 @@ FactoryBot.define do
     name { Faker::Book.genre }
   end
 
-  factory :station_show do
-    association :station, factory: :station
+  factory :listings do
+    association :watchlist, factory: :watchlist
     association :show, factory: :show
     association :user, factory: :user
     user_status "Not Started"

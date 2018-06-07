@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def new
     if logged_in?
-      redirect_to stations_path
+      redirect_to watchlists_path
     else
       @user = User.new
     end
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to stations_path
+      redirect_to watchlists_path
     else
       render :new
     end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = current_user
     if logged_in?
       unless @user == User.find_by(id: params[:id])
-        redirect_to stations_path
+        redirect_to watchlists_path
         flash[:danger] = "You don't have access to view that user's settings!"
       end
     else

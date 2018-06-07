@@ -10,11 +10,11 @@
 alexis = User.create(email: 'alexisadorn@gmail.com', password: 'test123')
 joe = User.create(email: 'joe@gmail.com', password: 'test123')
 
-# STATIONS
-currently_watching = Station.create(name: 'Currently Watching', description: 'Shows I\'m currently watching', user: alexis)
-to_start = Station.create(name: 'To Start', description: 'Shows I want to start watching', user: alexis)
-waiting_for = Station.create(name: 'Waiting', description: 'Shows that are on break', user: alexis)
-family_friendly = Station.create(name: 'Family-Friendly', description: 'Shows for the whole family', user: joe)
+# WATCHLISTS
+currently_watching = Watchlist.create(name: 'Currently Watching', description: 'Shows I\'m currently watching', user: alexis)
+to_start = Watchlist.create(name: 'To Start', description: 'Shows I want to start watching', user: alexis)
+waiting_for = Watchlist.create(name: 'Waiting', description: 'Shows that are on break', user: alexis)
+family_friendly = Watchlist.create(name: 'Family-Friendly', description: 'Shows for the whole family', user: joe)
 
 # GENRES
 horror = Genre.create(name: "Horror")
@@ -63,9 +63,9 @@ lost_in_space.genres << adventure
 lost_in_space.channel = netflix
 lost_in_space.save
 
-# STATION SHOW
-station_show1 = StationShow.create(station: currently_watching, show: terror, user: alexis, user_status: 'Currently Watching', user_season: 1)
-station_show2 = StationShow.create(station: to_start, show: mr_robot, user: alexis, user_status: "Not Started", user_season: 1)
-station_show3 = StationShow.create(station: waiting_for, show: got, user: alexis, user_status: "Caught Up", user_season: 7, fav: true)
-station_show4 = StationShow.create(station: currently_watching, show: lost_in_space, user: alexis, user_status: "Currently Watching", user_season: 1, fav: true)
-station_show5 = StationShow.create(station: family_friendly, show: lost_in_space, user: joe, user_status: "Not Started", user_season: 1)
+# Listing
+listing1 = Listing.create(watchlist: currently_watching, show: terror, user: alexis, user_status: 'Currently Watching', user_season: 1)
+listing2 = Listing.create(watchlist: to_start, show: mr_robot, user: alexis, user_status: "Not Started", user_season: 1)
+listing3 = Listing.create(watchlist: waiting_for, show: got, user: alexis, user_status: "Caught Up", user_season: 7, fav: true)
+listing4 = Listing.create(watchlist: currently_watching, show: lost_in_space, user: alexis, user_status: "Currently Watching", user_season: 1, fav: true)
+listing5 = Listing.create(watchlist: family_friendly, show: lost_in_space, user: joe, user_status: "Not Started", user_season: 1)

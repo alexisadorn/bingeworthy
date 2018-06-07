@@ -5,13 +5,13 @@ RSpec.describe User, type: :model do
     @user1 = create(:user)
   end
 
-  it { should have_many(:stations) }
+  it { should have_many(:watchlists) }
 
-  it { should have_many(:station_shows) }
+  it { should have_many(:listings) }
 
   it 'should have many shows' do
     should have_many(:shows).
-      through(:station_shows)
+      through(:listings)
   end
 
   it "is valid with valid attributes" do

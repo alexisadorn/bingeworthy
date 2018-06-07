@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :stations
-  has_many :station_shows
-  has_many :shows, through: :station_shows
+  has_many :watchlists
+  has_many :listings
+  has_many :shows, through: :listings
 
   has_secure_password
   validates :email, presence: true, uniqueness: true
@@ -9,6 +9,6 @@ class User < ApplicationRecord
 
   def favorite_shows
     # List the user's shows where fav is true
-    self.shows.includes(:station_shows).where(:station_shows => { fav: true })
+    self.shows.includes(:listings).where(:listings => { fav: true })
   end
 end

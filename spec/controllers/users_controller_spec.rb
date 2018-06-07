@@ -8,11 +8,11 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "redirects to the stations page if user is logged in" do
+    it "redirects to the watchlists page if user is logged in" do
       user = create(:user)
       session[:user_id] = user.id
       get :new
-      expect(response).to redirect_to stations_path
+      expect(response).to redirect_to watchlists_path
     end
   end
 

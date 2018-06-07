@@ -4,9 +4,9 @@ RSpec.describe Show, type: :model do
   before(:all) do
     @show1 = create(:show)
     @user1 = create(:user)
-    @station1 = create(:station)
+    @watchlist1 = create(:watchlist)
     @show1.genres.create([attributes_for(:genre), attributes_for(:genre)])
-    StationShow.create( station: @station1,
+    Listing.create( watchlist: @watchlist1,
                         show: @show1,
                         user: @user1,
                         user_season: 1)
@@ -18,14 +18,14 @@ RSpec.describe Show, type: :model do
 
   it { is_expected.to belong_to :channel }
 
-  it 'has many stations' do
-    should have_many(:stations).
-    through (:station_shows)
+  it 'has many watchlists' do
+    should have_many(:watchlists).
+    through (:listings)
   end
 
   it 'has many users' do
     should have_many(:users).
-    through (:station_shows)
+    through (:listings)
   end
 
   it 'has many genres' do

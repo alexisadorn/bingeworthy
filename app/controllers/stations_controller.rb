@@ -1,20 +1,20 @@
-class StationsController < ApplicationController
+class WatchlistsController < ApplicationController
   before_action :require_login
-  before_action :set_user_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_watchlist, only: [:show, :edit, :update, :destroy]
 
   def index
-    @stations = current_user.stations
+    @watchlists = current_user.watchlists
     @favorites = current_user.favorite_shows
   end
 
   def new
-    @station = Station.new
+    @watchlist = Watchlist.new
   end
 
   def create
-    @station = Station.new(station_params)
-    if @station.save
-      redirect_to station_path(@station)
+    @watchlist = Watchlist.new(watchlist_params)
+    if @watchlist.save
+      redirect_to watchlist_path(@watchlist)
     else
       render :new
     end
@@ -27,34 +27,34 @@ class StationsController < ApplicationController
   end
 
   def update
-    @station.update(station_params)
-    if @station.save
-      redirect_to station_path(@station)
+    @watchlist.update(watchlist_params)
+    if @watchlist.save
+      redirect_to watchlist_path(@watchlist)
     else
       render :edit
     end
   end
 
   def destroy
-    if @station
-      @station.destroy
-      redirect_to stations_path
-      flash[:message] = "Your station has been shut down"
+    if @watchlist
+      @watchlist.destroy
+      redirect_to watchlists_path
+      flash[:message] = "Your watchlist has been deleted"
     else
       render :show
     end
   end
 
   private
-  def station_params
-    params.require(:station).permit(:name, :description, :user_id)
+  def watchlist_params
+    params.require(:watchlist).permit(:name, :description, :user_id)
   end
 
-  def set_user_station
-    @station = Station.find_by(id: params[:id])
-    unless @station.user == current_user
-      flash[:error] = "This is not your station!"
-      redirect_to stations_path
+  def set_user_watchlist
+    @watchlist = Watchlist.find_by(id: params[:id])
+    unless @watchlist.user == current_user
+      flash[:error] = "This is not your watchlist!"
+      redirect_to watchlists_path
     end
   end
 end

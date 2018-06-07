@@ -1,15 +1,18 @@
-<h1><%= current_user.username %>'s Stations</h1>
-<% alphebetize(@stations).each do |station| %>
-  <p><%= link_to station.name, station_path(station) %></p>
+<h1><%= current_user.username %>'s Watchlists</h1>
+<% if @watchlists.count == 0 %>
+  <p>You don't have any watchlists! <%= link_to "Create One and Start Adding Shows", new_watchlist_path %></p>
+<% else %>
+  <% alphebetize(@watchlists).each do |watchlist| %>
+    <p><%= link_to watchlist.name, watchlist_path(watchlist) %></p>
+  <% end %>
 <% end %>
-
 <hr>
 
 <p>Favorite Shows</p>
 <% @favorites.each do |show| %>
 <p> <%= link_to show.title, show_path(show) %></p>
 <% end %>
-<button><%= link_to "Create a new Station", new_station_path %></button>
+<button><%= link_to "Create a new Watchlist", new_watchlist_path %></button>
 <button><%= link_to "Add Shows", shows_path %></button>
 <br>
 <br>

@@ -1,46 +1,45 @@
-class StationShowsController < ApplicationController
+class ListingsController < ApplicationController
   def new
-    @station_show = StationShow.new
-    @station_show.show = Show.find_by(id: params[:show_id])
-    @station_show.save
+    @listing = Listing.new
+    @listing.show = Show.find_by(id: params[:show_id])
+    @listing.save
   end
 
   def create
-    @station_show = StationShow.new(station_show_params)
-    if @station_show.save
-      redirect_to show_path(@station_show.show)
+    @listing = Listing.new(listing_params)
+    if @listing.save
+      redirect_to show_path(@listing.show)
     else
       render :new
     end
   end
 
   def edit
-    @station_show = StationShow.find_by(id: params[:id])
+    @listing = Listing.find_by(id: params[:id])
   end
 
   def update
-    @station_show = StationShow.find_by(id: params[:id])
-    @station_show.update(station_show_params)
-    if @station_show.save
-      redirect_to show_path(@station_show.show)
+    @listing = Listing.find_by(id: params[:id])
+    @listing.update(listing_params)
+    if @listing.save
+      redirect_to show_path(@listing.show)
     else
       render :edit
     end
   end
 
   def destroy
-    @station_show = StationShow.find_by(id: params[:station_show_id])
-    binding.pry
-    if @station_show
-      @station_show.destroy
-      redirect_to stations_path
+    @listing = Listing.find_by(id: params[:listing_id])
+    if @listing
+      @listing.destroy
+      redirect_to watchlists_path
     else
       render 'shows/show'
     end
   end
 
   private
-  def station_show_params
-    params.require(:station_show).permit(:station_id, :show_id, :user_id, :user_status, :user_season, :fav)
+  def listing_params
+    params.require(:listing).permit(:watchlist_id, :show_id, :user_id, :user_status, :user_season, :fav)
   end
 end

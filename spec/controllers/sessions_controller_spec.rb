@@ -8,11 +8,11 @@ RSpec.describe SessionsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "redirects to the stations page if user is logged in" do
+    it "redirects to the watchlists page if user is logged in" do
       user = create(:user)
       post :create, params: {session: {email: user.email, password: user.password }}
       get :new
-      expect(response).to redirect_to stations_path
+      expect(response).to redirect_to watchlists_path
     end
   end
 
@@ -45,7 +45,7 @@ RSpec.describe SessionsController, type: :controller do
       user = create(:user)
       post :create, params: {session: {email: user.email, password: user.password }}
 
-      expect(response).to redirect_to stations_path
+      expect(response).to redirect_to watchlists_path
       expect(session[:user_id]).to eq(user.id)
     end
   end

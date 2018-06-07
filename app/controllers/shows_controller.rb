@@ -5,19 +5,20 @@ class ShowsController < ApplicationController
 
   def index
     if params[:user_id].present?
-      @shows = Show.joins(:station_shows).where(:station_shows => {user_id: params[:user_id]}).uniq
+      @user = User.find_by(id: params[:user_id])
+      @shows = @user.shows.uniq
     else
       @shows = Show.all
     end
   end
 
   def show
-    @station_shows = @show.station_shows.where(user_id: current_user.id)
+    @listings = @show.watchlists_by_user
   end
 
   def new
     @show = Show.new
-    @station_shows = @show.station_shows.build(station_id: params[:station_id])
+    @listings = @show.listings.build(watchlist_id: params[:watchlist_id])
   end
 
   def create
@@ -30,8 +31,8 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    if params[:station_id]
-      @station_shows = StationShow.find_by(station_id: params[:station_id], show_id: @show.id, user_id: current_user.id)
+    if params[:watchlist_id]
+      @listings = Listing.find_by(watchlist_id: params[:watchlist_id], show_id: @show.id, user_id: current_user.id)
     end
   end
 
@@ -56,7 +57,7 @@ class ShowsController < ApplicationController
                                   genre_ids:[],
                                   genres_attributes:[:name],
                                   channel_attributes:[:name],
-                                  station_shows_attributes:[:station_id, :user_status, :user_season, :fav, :user_id])
+                                  listings_attributes:[:watchlist_id, :user_status, :user_season, :fav, :user_id])
   end
 
   def set_show

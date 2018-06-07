@@ -1,12 +1,12 @@
 class Show < ApplicationRecord
-  has_many :station_shows
-  has_many :stations, through: :station_shows
-  has_many :users, through: :station_shows
+  has_many :listings
+  has_many :watchlists, through: :listings
+  has_many :users, through: :listings
   has_many :show_genres
   has_many :genres, through: :show_genres
   belongs_to :channel
   accepts_nested_attributes_for :genres
-  accepts_nested_attributes_for :station_shows
+  accepts_nested_attributes_for :listings
 
   validates :title, presence: true, uniqueness: { scope: :channel_id } # Validates uniqueness of title and channel
   validates :current_season, presence: true, numericality: { greater_than: 0 }
@@ -34,5 +34,9 @@ class Show < ApplicationRecord
       genre = Genre.find_or_create_by(name: genre_name)
       self.genres << genre
     end
+  end
+
+  def watchlists_by_user
+    self.listings.where(user_id: current_user.id)
   end
 end

@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 <%= form_for(@show) do |f| %>
-  <% if @station_shows.present? %>
+  <% if @listing.present? %>
     <h1><%= @show.title %></h1>
     <p><%= @show.description %></p>
     <p><strong>Genres:</strong>
@@ -22,16 +22,16 @@
     <p><strong>Time: </strong><%= @show.time %></p>
     <p><strong>Current Season: </strong><%= @show.current_season %></p>
     <hr>
-    <br><strong>Update Station Details:</strong><br>
-    <%= f.fields_for :station_shows, @station_shows do |station_form| %>
-      Editing Fields For <%= @station_shows.station.name %> Station<br>
-      <%= station_form.label "Your Viewing Status" %>
-      <%= station_form.text_field :user_status %><br>
-      <%= station_form.label "What Season Are You On" %>
-      <%= station_form.number_field :user_season %><br>
-      <%= station_form.check_box :fav %> Fav? <br>
-      <%= station_form.hidden_field :user_id, value: current_user.id %>
-      <%= station_form.hidden_field :station_id, value: @station_shows.station.id %>
+    <br><strong>Update Watchlist Details:</strong><br>
+    <%= f.fields_for :listings, @listings do |listing_form| %>
+      Editing Fields For <%= @listings.watchlist.name %> Watchlist<br>
+      <%= listing_form.label "Your Viewing Status" %>
+      <%= listing_form.text_field :user_status %><br>
+      <%= listing_form.label "What Season Are You On" %>
+      <%= listing_form.number_field :user_season %><br>
+      <%= listing_form.check_box :fav %> Fav? <br>
+      <%= listing_form.hidden_field :user_id, value: current_user.id %>
+      <%= listing_form.hidden_field :watchlist_id, value: @listings.watchlist.id %>
     <% end %>
   <% else %>
     <%= f.label :title %>

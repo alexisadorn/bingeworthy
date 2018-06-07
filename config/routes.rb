@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show] do
     resources :shows, only: [:index]
   end
-  resources :stations
-  resources :station_shows, except: [:index]
+  resources :watchlists
+  resources :listings, except: [:index]
   resources :shows do
-    resources :station_shows, only: [:new, :create, :edit, :update]
+    resources :listings, only: [:new, :create, :edit, :update]
   end
   resources :genres, only: [:index, :show]
   resources :channels, only: [:index, :show]
