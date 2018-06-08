@@ -1,6 +1,6 @@
 <h1>Browse All Shows</h1>
 <ul>
-<% alphebetized_shows.each do |show| %>
+<% alphebetize(@shows).each do |show| %>
   <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
 <% end %>
 </ul>

@@ -12,6 +12,7 @@
 <p><strong>Time: </strong><%= @show.time %></p>
 <p><strong>Current Season: </strong><%= @show.current_season %></p>
 <hr>
+<%= watchlist_options %><!-- Move conditional logic below into watchlist_options helper method %> -->
 <% if @listings.count > 0 %>
   <% @listings.each do |listing| %>
     Watchlist: <%= link_to listing.watchlist.name, watchlist_path(listing.watchlist) %><br>

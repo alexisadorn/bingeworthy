@@ -36,7 +36,7 @@ class Show < ApplicationRecord
     end
   end
 
-  def watchlists_by_user
-    self.listings.where(user_id: current_user.id)
+  def watchlists_by_user(user_id)
+    self.listings.where(user_id: user_id)
   end
 end

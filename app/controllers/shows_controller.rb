@@ -5,8 +5,8 @@ class ShowsController < ApplicationController
   helper_method :current_user
 
   def index
-    if params[:user_id].present?
-      @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+    if @user
       @shows = @user.shows.uniq
     else
       @shows = Show.all
@@ -14,7 +14,7 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @listings = @show.watchlists_by_user
+    @listings = @show.watchlists_by_user(current_user.id)
   end
 
   def new
