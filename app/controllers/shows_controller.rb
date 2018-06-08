@@ -14,7 +14,7 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @listings = @show.watchlists_by_user(current_user.id)
+    @listings = @show.shows_watchlists_by_user(current_user.id)
   end
 
   def new
@@ -54,8 +54,7 @@ class ShowsController < ApplicationController
                                   :created_by,
                                   genre_ids:[],
                                   genres_attributes:[:name],
-                                  channel_attributes:[:name],
-                                  listings_attributes:[:watchlist_id, :user_status, :user_season, :fav, :user_id])
+                                  channel_attributes:[:name])
   end
 
   def set_show

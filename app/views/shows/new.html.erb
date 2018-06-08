@@ -7,10 +7,4 @@
     </ul>
   <% end %>
 
-<%= form_for(@show) do |f| %>
-
-  <%= render partial: "form", locals: {@show: show, f: f} %>
-
-  <%= render partial: "listings/form", locals: {@listings: listings, f: f} %>
-
-<% end %>
+  <%= render partial: "form", locals: {show: @show} %>

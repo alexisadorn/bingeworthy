@@ -5,19 +5,9 @@ class Show < ApplicationRecord
   has_many :show_genres
   has_many :genres, through: :show_genres
   belongs_to :channel
-  accepts_nested_attributes_for :genres
-  accepts_nested_attributes_for :listings
 
   validates :title, presence: true, uniqueness: { scope: :channel_id } # Validates uniqueness of title and channel
   validates :current_season, presence: true, numericality: { greater_than: 0 }
-
-  def channel_name=(name)
-    self.channel = Channel.find_or_create_by(name: name) unless name.blank?
-  end
-
-  def channel_name
-    nil
-  end
 
   def channel_attributes=(channel_attributes)
     channel_attributes.values.each do |channel_attribute|
@@ -36,7 +26,7 @@ class Show < ApplicationRecord
     end
   end
 
-  def watchlists_by_user(user_id)
+  def shows_watchlists_by_user(user_id)
     self.listings.where(user_id: user_id)
   end
 end
