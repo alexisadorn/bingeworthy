@@ -19,7 +19,7 @@ class ShowsController < ApplicationController
 
   def new
     @show = Show.new
-    @listings = @show.listings.build(watchlist_id: params[:watchlist_id])
+    @listings = @show.listings.build
   end
 
   def create
@@ -32,9 +32,6 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    if params[:watchlist_id]
-      @listings = Listing.find_by(watchlist_id: params[:watchlist_id], show_id: @show.id, user_id: current_user.id)
-    end
   end
 
   def update

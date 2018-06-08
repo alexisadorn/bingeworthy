@@ -1,0 +1,10 @@
+Add this Show to Your Watchlist:
+<%= f.fields_for @listings do |watchlist_form| %>
+  <%= watchlist_form.collection_select :watchlist_id, Watchlist.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
+  <%= watchlist_form.label "Your Viewing Status" %>
+  <%= watchlist_form.text_field :user_status %><br>
+  <%= watchlist_form.label "What Season Are You On" %>
+  <%= watchlist_form.number_field :user_season %><br>
+  <%= watchlist_form.check_box :fav %> Fav? <br>
+  <%= watchlist_form.hidden_field :user_id, value: current_user.id %>
+<% end %>

@@ -12,25 +12,11 @@
 <p><strong>Time: </strong><%= @show.time %></p>
 <p><strong>Current Season: </strong><%= @show.current_season %></p>
 <hr>
-<%= watchlist_options %><!-- Move conditional logic below into watchlist_options helper method %> -->
-<% if @listings.count > 0 %>
-  <% @listings.each do |listing| %>
-    Watchlist: <%= link_to listing.watchlist.name, watchlist_path(listing.watchlist) %><br>
-    User Status: <%= listing.user_status %><br>
-    User Season: <%= listing.user_season %><br>
-    <%= link_to "Edit Watchlist Details", edit_show_listing_path(@show, listing) %><br>
-    <%= form_tag(listing_path, method: "delete") do %>
-    <%= hidden_field_tag :listing_id, listing.id %>
-    <%= submit_tag "Remove This Show from This Watchlist" %>
-    <% end %>
-    <br>
-  <% end %>
-  <%= link_to "Add to Another New Watchlist", new_show_listing_path(@show) %>
-<% else %>
-  <%= link_to "Add to A Watchlist", new_show_listing_path(@show) %>
-<% end %>
+<%= watchlist_options(@listings, @show) %>
+<%= link_to "Add to A Watchlist", new_show_listing_path(@show) %>
 <hr>
 <%= link_to "Back to Shows", shows_path %> <br>
+
 <% if @show.created_by == current_user.id %>
   <%= link_to "Update show details", edit_show_path(@show) %>
 <% end %>

@@ -1,49 +1,16 @@
 <h1>Create a New Show</h1>
-<% if @show.errors.any? %>
-  <ul>
-  <% @show.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+  <% if @show.errors.any? %>
+    <ul>
+    <% @show.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
+
 <%= form_for(@show) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %><br>
-  <%= f.label "Show Description" %>
-  <%= f.text_area :description %><br>
-  <%= f.label :channel %>
-  <%= f.collection_select :channel_id, Channel.order('name ASC'), :id, :name, :include_blank => true %> or <br>
-  Create a new channel:
-  <%= f.fields_for :channel_attributes do |channel_fields| %>
-    <%= channel_fields.text_field :name %>
-  <% end %>
-  <br>
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select(['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']), { include_blank: true }) %>
-  <br>
-  <%= f.label :time %>
-  <%= f.text_field :time %><br>
-  <%= f.label :current_season %>
-  <%= f.number_field :current_season %><br>
-  <%= f.label :genre %><br>
-  <%= f.collection_check_boxes :genre_ids, Genre.order('name ASC'), :id, :name %> <br>
-  Create a new genre:
-  <%= f.fields_for :genres, @show.genres.build do |genre_fields| %>
-    <%= genre_fields.text_field :name %>
-  <% end %>
-  <hr>
-  Add this Show to Your Watchlist:
-  <%= f.fields_for :listings, @listings do |watchlist_form| %>
-    <%= watchlist_form.collection_select :watchlist_id, Watchlist.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
-    <%= watchlist_form.label "Your Viewing Status" %>
-    <%= watchlist_form.text_field :user_status %><br>
-    <%= watchlist_form.label "What Season Are You On" %>
-    <%= watchlist_form.number_field :user_season %><br>
-    <%= watchlist_form.check_box :fav %> Fav? <br>
-    <%= watchlist_form.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-  <%= f.hidden_field :created_by, value: current_user.id %>
-<br>
-<br>
-<%= f.submit %>
+
+  <%= render partial: "form", locals: {@show: show, f: f} %>
+
+  <%= render partial: "listings/form", locals: {@listings: listings, f: f} %>
+
 <% end %>
