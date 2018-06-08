@@ -9,6 +9,6 @@ class User < ApplicationRecord
 
   def favorite_shows
     # List the user's shows where fav is true
-    self.shows.includes(:listings).where(:listings => { fav: true })
+    self.shows.includes(:listings).where(:listings => { fav: true }).uniq
   end
 end

@@ -2,9 +2,14 @@
 <p><em><%= @watchlist.description %></em></p>
 <ul>
   <% @watchlist.shows.each do |show| %>
-    <li><%= link_to show.title, show_path(show) %></li>
+    <li><%= link_to show.title, show_path(show) %><br>
+    Channel: <%= show.channel.name %><br>
+    Day: <%= show.day %><br>
+    Time: <%= show.time %><br>
+    Season: <%= show.current_season %></li><br>
   <% end %>
 </ul>
+<br>
 <%= link_to "Edit this Watchlist", edit_user_watchlist_path(@user, @watchlist) %><br>
 <%= link_to "Back to All Watchlists", user_watchlists_path(@user) %>
 <%= form_tag(watchlist_path, method: "delete") do %>
