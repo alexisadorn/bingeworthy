@@ -1,6 +1,7 @@
 class WatchlistsController < ApplicationController
   before_action :require_login
   before_action :set_user_watchlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:new, :create, :edit, :update, :show]
 
   def index
     @watchlists = current_user.watchlists
@@ -12,7 +13,7 @@ class WatchlistsController < ApplicationController
   end
 
   def create
-    @watchlist = Watchlist.new(watchlist_params)
+    @watchlist = @user.watchlists.build(watchlist_params)
     if @watchlist.save
       redirect_to watchlist_path(@watchlist)
     else
@@ -56,5 +57,9 @@ class WatchlistsController < ApplicationController
       flash[:error] = "This is not your watchlist!"
       redirect_to watchlists_path
     end
+  end
+
+  def set_user
+    @user = User.find_by(id: params[:user_id])
   end
 end
