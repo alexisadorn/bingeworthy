@@ -1,4 +1,9 @@
 <h1><%= link_to "Browse Shows", shows_path %></h1>
+<% if @user %>
+  <%= form_tag(user_shows_behind_path, method: "get") do %>
+    <%= submit_tag("Shows I'm Behind On") %>
+  <% end %>
+<% end %>
 <ul>
 <% alphebetize(@shows).each do |show| %>
   <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>

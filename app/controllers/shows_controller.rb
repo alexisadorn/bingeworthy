@@ -48,6 +48,11 @@ class ShowsController < ApplicationController
     render :index
   end
 
+  def behind
+    @shows = Show.behind_on(params[:user_id])
+    render :index
+  end
+
   private
   def show_params
     params.require(:show).permit( :title,
