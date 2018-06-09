@@ -1,10 +1,20 @@
-Add this Show to Your Watchlist:
-<%= f.fields_for :listings_attributes, @listings do |watchlist_form| %>
-  <%= watchlist_form.collection_select :watchlist_id, Watchlist.order('name ASC').where(user_id: current_user.id), :id, :name, :include_blank => true %><br>
-  <%= watchlist_form.label "Your Viewing Status" %>
-  <%= watchlist_form.text_field :user_status %><br>
-  <%= watchlist_form.label "What Season Are You On" %>
-  <%= watchlist_form.number_field :user_season %><br>
-  <%= watchlist_form.check_box :fav %> Fav? <br>
-  <%= watchlist_form.hidden_field :user_id, value: current_user.id %>
+<% if listing.errors.any? %>
+  <ul>
+  <% listing.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for listing do |f| %>
+  <%= f.label :watchlist %>
+  <%= f.collection_select :watchlist_id, current_user.watchlists.order('name ASC'), :id, :name, :include_blank => true %><br>
+  <%= f.label :user_status %>
+  <%= f.text_field :user_status %><br>
+  <%= f.label :user_season %>
+  <%= f.number_field :user_season %><br>
+  <%= f.check_box :fav %> Fav? <br>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :show_id, value: @listing.show.id %>
+  <%= f.submit %>
 <% end %>

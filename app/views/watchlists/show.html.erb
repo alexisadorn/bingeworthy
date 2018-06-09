@@ -1,12 +1,8 @@
 <h1><%= @watchlist.name %></h1>
 <p><em><%= @watchlist.description %></em></p>
 <ul>
-  <% @watchlist.shows.each do |show| %>
-    <li><%= link_to show.title, show_path(show) %><br>
-    Channel: <%= show.channel.name %><br>
-    Day: <%= show.day %><br>
-    Time: <%= show.time %><br>
-    Season: <%= show.current_season %></li><br>
+  <% @shows.each do |show| %>
+    <li><%= link_to show.title, show_path(show) %></li>
   <% end %>
 </ul>
 <br>

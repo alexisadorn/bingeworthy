@@ -1,3 +1,11 @@
+<% if @show.errors.any? %>
+  <ul>
+  <% @show.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_for(show) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>

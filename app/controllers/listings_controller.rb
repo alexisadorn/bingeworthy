@@ -28,7 +28,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing = Listing.find_by(id: params[:listing_id])
+    @listing = Listing.find_by(id: params[:id])
     if @listing
       @listing.destroy
       redirect_to watchlists_path

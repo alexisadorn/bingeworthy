@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :watchlists
   resources :listings, except: [:index]
   resources :shows do
-    resources :listings, only: [:new, :create, :edit, :update]
+    resources :listings, except: [:index]
   end
   resources :genres, only: [:index, :show]
   resources :channels, only: [:index, :show]

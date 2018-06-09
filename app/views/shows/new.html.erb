@@ -1,10 +1,2 @@
 <h1>Create a New Show</h1>
-  <% if @show.errors.any? %>
-    <ul>
-    <% @show.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  <% end %>
-
-  <%= render partial: "form", locals: {show: @show} %>
+<%= render partial: "form", locals: {show: @show} %>

@@ -22,6 +22,7 @@ class WatchlistsController < ApplicationController
   end
 
   def show
+    @shows = @watchlist.shows
   end
 
   def edit
