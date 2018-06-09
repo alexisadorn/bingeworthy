@@ -1,9 +1,14 @@
-<h1>Browse All Shows</h1>
+<h1><%= link_to "Browse Shows", shows_path %></h1>
 <ul>
 <% alphebetize(@shows).each do |show| %>
   <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
 <% end %>
 </ul>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:query, "Search for a Show:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>
 <%= link_to "Add New Show", new_show_path %><br>
 <%= link_to "Browse by Genre", genres_path %><br>
 <%= link_to "Browse by Channel", channels_path %><br>

@@ -43,6 +43,11 @@ class ShowsController < ApplicationController
     end
   end
 
+  def search
+    @shows = Show.search(params[:query])
+    render :index
+  end
+
   private
   def show_params
     params.require(:show).permit( :title,
