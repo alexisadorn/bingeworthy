@@ -10,7 +10,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if auth
+      @user = User.new(
+        email: auth[:info][:email],
+        username: auth[:info][:name],
+        password: SecureRandom.urlsafe_base64
+      )
+    else
+      @user = User.new(user_params)
+    end
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_watchlists_path(@user)
@@ -35,5 +44,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :username, :password, :password_confirmation)
+  end
+
+  def auth
+    request.env['omniauth.auth']
   end
 end
