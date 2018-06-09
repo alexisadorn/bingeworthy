@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   get '/search', to: 'shows#search'
-  get '/auth/google/callback', to: 'users#create'
+  get '/auth/google/callback', to: 'users#google_login'
   resources :users do
     resources :watchlists
     resources :shows, only: [:index]
