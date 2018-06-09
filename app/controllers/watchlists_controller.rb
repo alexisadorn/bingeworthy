@@ -1,7 +1,7 @@
 class WatchlistsController < ApplicationController
   before_action :require_login
   before_action :set_user_watchlist, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:new, :create, :edit, :update, :show]
+  before_action :set_user
 
   def index
     @watchlists = current_user.watchlists

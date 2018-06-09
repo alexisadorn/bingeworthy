@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    @listing.show = Show.find_by(id: params[:show_id])
     if @listing.save
       redirect_to show_path(@listing.show)
     else
@@ -39,6 +40,6 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.require(:listing).permit(:watchlist_id, :show_id, :user_id, :user_status, :user_season, :fav)
+    params.require(:listing).permit(:watchlist_id, :user_id, :user_status, :user_season, :fav)
   end
 end

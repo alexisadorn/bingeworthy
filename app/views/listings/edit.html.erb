@@ -1,2 +1,2 @@
 <h1>Edit <%= @listing.show.title %> on <%= @listing.watchlist.name %> Watchlist</h1>
-<%= render partial: "form", locals: {listing: @listing} %>
+<%= render partial: "form", locals: {listing: @listing, show: @listing.show} %>

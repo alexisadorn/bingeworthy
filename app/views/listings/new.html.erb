@@ -1,2 +1,2 @@
 <h1>Add <%= @listing.show.title %> to Your Watchlist</h1>
-<%= render partial: "form", locals: {listing: @listing} %>
+<%= render partial: "form", locals: {listing: @listing, show: @listing.show} %>
