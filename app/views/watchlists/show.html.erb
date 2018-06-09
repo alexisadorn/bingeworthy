@@ -6,8 +6,8 @@
   <% end %>
 </ul>
 <br>
-<%= link_to "Edit this Watchlist", edit_user_watchlist_path(@user, @watchlist) %><br>
-<%= link_to "Back to All Watchlists", user_watchlists_path(@user) %>
+<%= link_to "Edit this Watchlist", edit_user_watchlist_path(current_user, @watchlist) %><br>
+<%= link_to "Back to All Watchlists", user_watchlists_path(current_user) %>
 <%= form_tag(watchlist_path, method: "delete") do %>
 <%= submit_tag "Delete Watchlist" %>
 <% end %>

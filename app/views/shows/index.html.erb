@@ -1,9 +1,4 @@
 <h1><%= link_to "Browse Shows", shows_path %></h1>
-<% if @user %>
-  <%= form_tag(user_shows_behind_path, method: "get") do %>
-    <%= submit_tag("Shows I'm Behind On") %>
-  <% end %>
-<% end %>
 <ul>
 <% alphebetize(@shows).each do |show| %>
   <li><%= link_to show.title, show_path(show) %> - <%= show.channel.name %></li>
@@ -17,4 +12,4 @@
 <%= link_to "Add New Show", new_show_path %><br>
 <%= link_to "Browse by Genre", genres_path %><br>
 <%= link_to "Browse by Channel", channels_path %><br>
-<%= link_to "Back to my Stations", user_watchlists_path(current_user) %>
+<%= link_to "Back to my Watchlists", user_watchlists_path(current_user) %>

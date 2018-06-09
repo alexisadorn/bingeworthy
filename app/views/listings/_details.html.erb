@@ -1,6 +1,6 @@
 Watchlist:
 <% listings.each do |listing| %>
-  <%= link_to listing.watchlist.name, watchlist_path(listing.watchlist) %><br>
+  <%= link_to listing.watchlist.name, user_watchlist_path(current_user, listing.watchlist) %><br>
   User Status: <%= listing.user_status %><br>
   User Season: <%= listing.user_season %><br>
 

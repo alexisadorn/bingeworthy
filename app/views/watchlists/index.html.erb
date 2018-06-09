@@ -17,5 +17,6 @@
 <br>
 <br>
 <%= link_to "See All of My Shows", user_shows_path(current_user) %></p>
-<%= link_to "View My Account Settings", user_path(current_user) %></p>
-<%= link_to "Logout", logout_path %></p>
+<%= form_tag(user_shows_behind_path(current_user), method: "get") do %>
+  <%= submit_tag("Shows I'm Behind On") %>
+<% end %>
