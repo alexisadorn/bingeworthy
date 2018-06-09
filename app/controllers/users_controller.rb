@@ -23,14 +23,15 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     if logged_in?
-      unless @user == User.find_by(id: params[:id])
-        redirect_to user_watchlists_path(@user)
+      if @user == User.find_by(id: params[:id])
+        render :layout => "application"
+      else
         flash[:danger] = "You don't have access to view that user's settings!"
+        redirect_to user_watchlists_path(@user)
       end
     else
       redirect_to login_path
     end
-    render :layout => "application"
   end
 
   def google_login

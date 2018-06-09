@@ -10,10 +10,8 @@
   </head>
 
   <body>
-    <% flash.keys.each do |k| %>
-      <%= flash[k] %>
-    <% end %>
-    
+    <%= render partial: "shared/alerts" %>
+
     <%= yield %>
   </body>
 </html>

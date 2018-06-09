@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   helper_method :logged_in?, :current_user
   layout "static"
-  
+
   def new
     if logged_in?
       redirect_to user_watchlists_path(current_user)
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_watchlists_path(user)
     else
-      flash.now[:danger] = "Wrong email and/or password"
+      flash[:danger] = "Wrong email and/or password"
       render :new
     end
   end

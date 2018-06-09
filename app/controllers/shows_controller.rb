@@ -25,6 +25,7 @@ class ShowsController < ApplicationController
   def create
     @show = Show.new(show_params)
     if @show.save
+      flash[:message] = "#{@show.title} has been created"
       redirect_to show_path(@show)
     else
       render :new
@@ -37,6 +38,7 @@ class ShowsController < ApplicationController
   def update
     @show.update(show_params)
     if @show.save
+      flash[:message] = "#{@show.title} has been updated"
       redirect_to show_path(@show)
     else
       render :edit

@@ -16,6 +16,7 @@ class WatchlistsController < ApplicationController
     @watchlist = @user.watchlists.build(watchlist_params)
     if @watchlist.save
       redirect_to watchlist_path(@watchlist)
+      flash[:message] = "New Watchlist Created!"
     else
       render :new
     end
@@ -32,6 +33,7 @@ class WatchlistsController < ApplicationController
     @watchlist.update(watchlist_params)
     if @watchlist.save
       redirect_to watchlist_path(@watchlist)
+      flash[:message] = "#{@watchlist.name} updated!"
     else
       render :edit
     end
@@ -56,7 +58,7 @@ class WatchlistsController < ApplicationController
   def set_user_watchlist
     @watchlist = Watchlist.find_by(id: params[:id])
     unless @watchlist.user == current_user
-      flash[:error] = "This is not your watchlist!"
+      flash[:danger] = "This is not your watchlist!"
       redirect_to watchlists_path
     end
   end
