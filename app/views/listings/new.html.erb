@@ -1,4 +1,13 @@
 <h1>Add <%= @listing.show.title %> to Your Watchlist</h1>
+<% if @listing.errors.any? %>
+  <ul>
+  <% @listing.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_for @listing do |f| %>
   <%= f.label :watchlist %>
   <%= f.collection_select :watchlist_id, current_user.watchlists.order('name ASC'), :id, :name, :include_blank => true %><br>

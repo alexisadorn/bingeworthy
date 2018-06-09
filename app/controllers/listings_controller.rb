@@ -2,7 +2,6 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @listing.show = Show.find_by(id: params[:show_id])
-    @listing.save
   end
 
   def create
