@@ -1,12 +1,12 @@
-<%= form_for [user, watchlist] do |f| %>
-
-  <% if watchlist.errors.any? %>
-    <ul>
-    <% watchlist.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<% if watchlist.errors.any? %>
+  <ul>
+  <% watchlist.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
   <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [user, watchlist] do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name %><br>

@@ -32,8 +32,10 @@ class ListingsController < ApplicationController
   def destroy
     if @listing
       @listing.destroy
+      flash[:message] = "The show has been removed from this watchlist"
       redirect_to watchlists_path
     else
+      flash[:danger] = "The show could not be removed"
       render 'shows/show'
     end
   end

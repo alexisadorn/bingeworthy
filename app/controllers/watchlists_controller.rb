@@ -44,6 +44,7 @@ class WatchlistsController < ApplicationController
       flash[:message] = "Your watchlist has been deleted"
     else
       render :show
+      flash[:danger] = "This watchlist could not be deleted"
     end
   end
 
