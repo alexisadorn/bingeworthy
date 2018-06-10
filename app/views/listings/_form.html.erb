@@ -9,13 +9,13 @@
 <% end %>
 
 <%= form_for [show, listing] do |f| %>
-  <%= f.label :watchlist %>
+  <strong><%= f.label :watchlist %></strong>
   <%= f.collection_select :watchlist_id, alphebetize(current_user.watchlists), :id, :name %><br>
-  <%= f.label :user_status %>
+  <strong><%= f.label :user_status %></strong>
   <%= f.text_field :user_status, class:"form-control" %><br>
-  <%= f.label :user_season %>
+  <strong><%= f.label :user_season %></strong>
   <%= f.number_field :user_season, class:"form-control" %><br>
-  <%= f.check_box :fav %> Fav? <br>
+  <%= f.check_box :fav %> <strong>Fav?</strong> <br>
   <%= f.hidden_field :user_id, value: current_user.id %><br>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
