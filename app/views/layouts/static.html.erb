@@ -10,8 +10,18 @@
   </head>
 
   <body>
-    <%= render partial: "shared/alerts" %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img src="/images/play-icon.png" width="30" height="30" class="d-inline-block alignt-top">
+      <%= link_to "Bingeworthy", root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
 
-    <%= yield %>
+    <div class="m-3">
+      <%= render partial: "shared/alerts" %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
