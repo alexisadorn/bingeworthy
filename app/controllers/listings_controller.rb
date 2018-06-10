@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
   def update
     @listing.update(listing_params)
     if @listing.save
-      flash[:message] = "Your #{@listing.show.title} listing has been updated"
+      flash[:message] = "#{@listing.show.title} listing has been updated"
       redirect_to show_path(@listing.show)
     else
       render :edit
