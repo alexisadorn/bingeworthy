@@ -12,7 +12,7 @@ RSpec.describe SessionsController, type: :controller do
       user = create(:user)
       post :create, params: {session: {email: user.email, password: user.password }}
       get :new
-      expect(response).to redirect_to watchlists_path
+      expect(response).to redirect_to user_watchlists_path(user)
     end
   end
 
@@ -45,7 +45,7 @@ RSpec.describe SessionsController, type: :controller do
       user = create(:user)
       post :create, params: {session: {email: user.email, password: user.password }}
 
-      expect(response).to redirect_to watchlists_path
+      expect(response).to redirect_to user_watchlists_path(user)
       expect(session[:user_id]).to eq(user.id)
     end
   end

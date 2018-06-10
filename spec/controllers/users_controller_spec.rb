@@ -12,7 +12,7 @@ RSpec.describe UsersController, type: :controller do
       user = create(:user)
       session[:user_id] = user.id
       get :new
-      expect(response).to redirect_to watchlists_path
+      expect(response).to redirect_to user_watchlists_path(user)
     end
   end
 

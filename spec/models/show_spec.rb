@@ -44,11 +44,6 @@ RSpec.describe Show, type: :model do
 
   it { should validate_presence_of(:current_season) }
 
-  it '\'s day is only a day of the week' do
-    show2 = build(:show, day: "Orange")
-    expect(show2).to_not be_valid
-  end
-
   it 'is not valid if the season is not a number' do
     show2 = build(:show, current_season: "Fred")
     expect(show2).to_not be_valid

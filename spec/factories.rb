@@ -29,7 +29,7 @@ FactoryBot.define do
     name { Faker::Book.genre }
   end
 
-  factory :listings do
+  factory :listing do
     association :watchlist, factory: :watchlist
     association :show, factory: :show
     association :user, factory: :user
