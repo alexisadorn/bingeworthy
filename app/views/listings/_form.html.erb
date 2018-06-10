@@ -1,19 +1,21 @@
 <% if listing.errors.any? %>
-  <ul>
-  <% listing.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+    <% listing.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_for [show, listing] do |f| %>
   <%= f.label :watchlist %>
   <%= f.collection_select :watchlist_id, alphebetize(current_user.watchlists), :id, :name, :include_blank => true %><br>
   <%= f.label :user_status %>
-  <%= f.text_field :user_status %><br>
+  <%= f.text_field :user_status, class:"form-control" %><br>
   <%= f.label :user_season %>
-  <%= f.number_field :user_season %><br>
+  <%= f.number_field :user_season, class:"form-control" %><br>
   <%= f.check_box :fav %> Fav? <br>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
+  <%= f.hidden_field :user_id, value: current_user.id %><br>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
