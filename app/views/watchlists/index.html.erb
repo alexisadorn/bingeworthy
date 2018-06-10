@@ -23,16 +23,14 @@
   <% if @watchlists.count == 0 %>
     <p><center>You don't have any watchlists! <%= link_to "Create One", new_user_watchlist_path(current_user) %> to start adding shows!</center></p>
   <% else %>
-    <div class="card">
-      <% alphebetize(@watchlists).each do |watchlist| %>
+    <% alphebetize(@watchlists).each do |watchlist| %>
       <div class="card border-info mb-3">
         <div class="card-body">
           <h5 class="card-title"><%= link_to watchlist.name, user_watchlist_path(current_user, watchlist) %></h5>
           <p class="card-text"><%= watchlist.description %></p>
         </div>
       </div>
-      <% end %>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
 
