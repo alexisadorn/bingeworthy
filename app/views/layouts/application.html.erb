@@ -12,6 +12,20 @@
   <body>
     <%= render partial: "shared/navbar" %>
     <%= render partial: "shared/alerts" %>
-    <%= yield %>
+    <div class="m-3">
+      <%= yield :header %>
+      <div class="row mt-4">
+        <div class="col-2">
+          <%= yield :vertical_nav %>
+        </div>
+        <div class="col-8">
+          <%= yield :content %>
+        </div>
+        <div class="col-2">
+          <%= yield :sidebar %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
