@@ -18,10 +18,7 @@
 <% end %>
 
 <% content_for :content do %>
-  <% col = 1 %>
   <% @shows.each do |show| %>
-  <% if col.odd? %><div class="row"><% end %>
-    <div class="col-sm-6">
       <div class="card mb-3">
         <h5 class="card-header"><%= link_to show.title, show_path(show) %></h5>
         <ul class="list-group list-group-flush">
@@ -29,9 +26,6 @@
           <li class="list-group-item">Season: <%= show.current_season %></li>
         </ul>
       </div>
-    </div>
-  <% if col.even? %></div><% end %>
-  <% col+=1 %>
   <% end %>
 <% end %>
 

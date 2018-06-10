@@ -41,6 +41,7 @@ class WatchlistsController < ApplicationController
 
   def destroy
     if @watchlist
+      remove_associated_listings
       @watchlist.destroy
       redirect_to watchlists_path
       flash[:message] = "Your watchlist has been deleted"
@@ -65,5 +66,11 @@ class WatchlistsController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:user_id])
+  end
+
+  def remove_associated_listings
+    @watchlist.listings.each do |listing|
+      listing.destroy
+    end
   end
 end
