@@ -1,24 +1,43 @@
-# README
+# Bingeworthy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![](/public/img/app_shows_scnsht.png)
 
-Things you may want to cover:
+ The application helps you keep track of your favorite and must-watch TV shows, and create lists to manage and organize those shows. This is a portfolio project for the Rails section of the Flatiron School's Web Development Immersive program.
 
-* Ruby version
+## Getting started
 
-* System dependencies
+To get started with the app, clone the repo and then install the needed gems:
 
-* Configuration
+```
+$ bundle install
+```
 
-* Database creation
+Next, migrate the database:
 
-* Database initialization
+```
+$ rake db:migrate
+```
 
-* How to run the test suite
+Then run the app in a local server:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails server
+```
 
-* Deployment instructions
+To learn more about how to sign up, log in, create watchlists and add shows, see my video walkthrough here.
 
-* ...
+If you have questions about the code, please take a look at my blog post on the process.
+
+# Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/alexisadorn/bingeworthy.
+
+# Additional Information
+
+For more information, see the
+[Rails Assessment Lesson for Flatiron](https://github.com/learn-co-students/rails-assessment-v-000).
+
+## License
+
+All source code in the [Ruby on Rails Tutorial](http://railstutorial.org/)
+is available jointly under the MIT License and the Beerware License. See
+[LICENSE.md](LICENSE.md) for details.
