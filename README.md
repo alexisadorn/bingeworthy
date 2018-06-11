@@ -26,7 +26,7 @@ $ rails server
 
 To learn more about how to sign up, log in, create watchlists and add shows, see my video walkthrough here.
 
-If you have questions about the code, please take a look at my blog post on the process.
+If you have questions about the code, please [take a look at my blog post on the process](https://alexisadorn.github.io/bingeworthy_-_a_rails_tv_show_app).
 
 # Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/alexisadorn/bingeworthy.
