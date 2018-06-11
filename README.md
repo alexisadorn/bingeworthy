@@ -1,6 +1,6 @@
 # Bingeworthy
 
-![](/public/img/app_shows_scnsht.png)
+![](/public/images/app_shows_scnsht.png)
 
  The application helps you keep track of your favorite and must-watch TV shows, and create lists to manage and organize those shows. This is a portfolio project for the Rails section of the Flatiron School's Web Development Immersive program.
 
