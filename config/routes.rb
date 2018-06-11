@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
   resources :genres, only: [:index, :show]
   resources :channels, only: [:index, :show]
-  get '/auth/google/callback', to: 'users#google_login'
   get '/search', to: 'shows#search'
+  get '/auth/google/callback', to: 'users#google_login'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

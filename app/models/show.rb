@@ -9,7 +9,7 @@ class Show < ApplicationRecord
   validates :title, presence: true, uniqueness: { scope: :channel_id } # Validates uniqueness of title and channel
   validates :current_season, presence: true, numericality: { greater_than: 0 }
 
-  scope :search, -> (query) { where("title LIKE ?", "%" + query + "%")}
+  scope :search, -> (query) { where("title LIKE ?", "%" + query + "%") }
   scope :behind_on, -> (user_id) { joins(:listings).where('shows.current_season > listings.user_season').where(listings: {user_id: user_id}).uniq }
 
   def channel_attributes=(channel_attributes)
