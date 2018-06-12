@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
   belongs_to :user
 
   validates :user_season, presence: true, numericality: { greater_than: 0 }
-  validates :watchlist_id, uniqueness: true, :on => :create
+  validates :watchlist_id, uniqueness: { scope: :show_id }, :on => :create
   validate :user_season_vs_current_season
 
   def user_season_vs_current_season
